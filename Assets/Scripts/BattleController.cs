@@ -10,8 +10,10 @@ public class BattleController : MonoBehaviour
 
     #region Private Properties
     private const float _SPACER = 0.5f;
+    private const float _MOVESPEED = 1f;
     private List<GameObject> _Anchors { get; set; }
     private GameObject SelectedTile {get; set;}
+    private bool searching;
     #endregion
 
     // Start is called before the first frame update
@@ -29,22 +31,22 @@ public class BattleController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !searching)
         {
+            searching = true;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if(hit.transform.tag == "Anchor"){
-                    Debug.Log("Selected Anchor!");
-                    if(SelectedTile != null) _MoveTile(hit.transform);
+                    if(SelectedTile != null) _MoveTile(_GetClosestTile(hit.transform));
                 }
                 else if(hit.transform.tag == "Tile"){
-                    Debug.Log("Selected Tile!");
                     if(SelectedTile == null){
                         SelectedTile = hit.transform.gameObject;
                     }
                 }
             }
+            searching = false;
         }
     }
 
@@ -65,7 +67,25 @@ public class BattleController : MonoBehaviour
     }
 
     private void _MoveTile(Transform anchor){
-        SelectedTile.transform.Translate(anchor.position);
+        TileController tile = SelectedTile.GetComponent<TileController>();
+        tile.SetTarget(anchor.position, _SPACER);
         SelectedTile = null;
+    }
+
+    private Transform _GetClosestTile(Transform hit){
+        Transform bestTarget = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = hit.position;
+        foreach(GameObject tile in _Anchors)
+        {
+            Vector3 directionToTarget = tile.transform.position - currentPosition;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if(dSqrToTarget < closestDistanceSqr)
+            {
+                closestDistanceSqr = dSqrToTarget;
+                bestTarget = tile.transform;
+            }
+        }
+        return bestTarget;
     }
 }
