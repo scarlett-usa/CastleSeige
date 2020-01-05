@@ -88,4 +88,8 @@ public class BattleController : MonoBehaviour
         }
         return bestTarget;
     }
+
+    private void _SelectTile(GameObject _selectedTile){
+        
+    }
 }

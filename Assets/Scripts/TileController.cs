@@ -3,6 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(ScriptableTile))]
 public class TileController : MonoBehaviour{
+    public ScriptableTile tileType;
     private Vector3 _targetPosition {get; set;}
     private float _startingDistance {get; set;}
     private float _distanceCheck {get; set;}
@@ -36,5 +37,13 @@ public class TileController : MonoBehaviour{
         _startingDistance = Vector3.Distance(target, transform.position);
         target.y = 0.125f;
         _targetPosition = target;
+    }
+
+    public void Select(){
+
+    }
+
+    public void DeSelect(){
+        
     }
 }
