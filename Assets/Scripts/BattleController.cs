@@ -58,7 +58,7 @@ public class BattleController : MonoBehaviour
         {
             for (int y = 0; y < BOARD_Y; y++)
             {
-                var anchor = Instantiate(SpawnPrefab, new Vector3(x + _SPACER, 0f, y + _SPACER), Quaternion.identity);
+                var anchor = Instantiate(SpawnPrefab, new Vector3(x + _SPACER, 0f, y + _SPACER), SpawnPrefab.transform.rotation);
                 anchor.name = $"Anchor-{x}-{y}";
                 _Anchors.Add(anchor);
                 anchor.transform.SetParent(anchorContainer.transform, true);

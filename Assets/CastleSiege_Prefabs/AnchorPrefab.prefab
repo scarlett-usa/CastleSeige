@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3888287916033329728}
   - component: {fileID: 8783822313734863796}
   - component: {fileID: 4493289108497211280}
+  - component: {fileID: 6791285955988735514}
   m_Layer: 8
   m_Name: AnchorPrefab
   m_TagString: Anchor
@@ -71,7 +72,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 086ac81b8bd7e4db7b808005cea1cabe, type: 2}
+  - {fileID: 2100000, guid: 972055fa842dd4998871aa985240db88, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,3 +92,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6791285955988735514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073713709780069542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da778e7e802114b92b7692c5ca6a058e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _HOVER_MATERIAL: {fileID: 2100000, guid: 086ac81b8bd7e4db7b808005cea1cabe, type: 2}
+  _STANDARD_MATERIAL: {fileID: 2100000, guid: 972055fa842dd4998871aa985240db88, type: 2}
+  _renderer: {fileID: 4493289108497211280}

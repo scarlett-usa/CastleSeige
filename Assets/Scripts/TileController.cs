@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ScriptableTile))]
 public class TileController : MonoBehaviour{
     private Vector3 _targetPosition {get; set;}
     private float _startingDistance {get; set;}
     private float _distanceCheck {get; set;}
     [SerializeField] private float _SPEED = 1f;
+
+    [SerializeField] private Material _HOVER_MATERIAL;
+    [SerializeField] private Material _STANDARD_MATERIAL;
+    [SerializeField] private Material _material;
 
     private void Start() {
         _targetPosition = transform.position;
@@ -29,6 +34,7 @@ public class TileController : MonoBehaviour{
     public void SetTarget(Vector3 target, float spacer = .5f){
         _distanceCheck = spacer;
         _startingDistance = Vector3.Distance(target, transform.position);
+        target.y = 0.125f;
         _targetPosition = target;
     }
 }
